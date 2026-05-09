@@ -1,0 +1,41 @@
+{
+	"name": "candidates-api",
+	"version": "1.0.0",
+	"description": "Server for handling API of candidates for and HR department",
+	"main": "src/index.js",
+	"scripts": {
+		"dev": "nodemon src/index.js",
+		"start": "node src/index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"candidates",
+		"api",
+		"nodejs",
+		"express"
+	],
+	"author": "Luibasantes",
+	"license": "ISC",
+	"dependencies": {
+		"bcrypt": "^6.0.0",
+		"cors": "^2.8.6",
+		"express": "^5.2.1",
+		"express-rate-limit": "^8.4.0",
+		"helmet": "^8.1.0",
+		"jsonwebtoken": "^9.0.3",
+		"mongoose": "^9.5.0",
+		"morgan": "^1.10.1",
+		"passport": "^0.7.0",
+		"passport-http": "^0.3.0",
+		"passport-jwt": "^4.0.1",
+		"passport-local": "^1.0.0",
+		"uuid": "^14.0.0"
+	},
+	"devDependencies": {
+		"dotenv": "^17.4.2",
+		"eslint": "^10.2.1",
+		"eslint-config-prettier": "^10.1.8",
+		"nodemon": "^3.1.14",
+		"prettier": "^3.8.3"
+	}
+}
