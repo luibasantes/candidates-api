@@ -7,6 +7,8 @@ const rateLimit = require("express-rate-limit");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
 const candidateRoutes = require("./routes/candidateV1");
+const jobRoutes = require("./routes/jobPostingV1");
+const applicationRoutes = require("./routes/applicationV1");
 
 const passport = require("./middlewares/auth");
 const errorHandlerMiddleware = require("./middlewares/errorHandler");
@@ -18,12 +20,12 @@ const app = express();
 
 // Limiter general para toda la API
 const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutos
-	max: 100,
-	message: {
-		status: 429,
-		message: "Demasiadas peticiones",
-	},
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 100,
+  message: {
+    status: 429,
+    message: "Demasiadas peticiones",
+  },
 });
 
 app.use(cors());
@@ -38,9 +40,21 @@ app.use(passport.initialize());
 app.use("/api/v1/auth", authRoutes);
 
 app.use(
-	"/api/v1/candidates",
-	passport.authenticate("jwt", { session: false }),
-	candidateRoutes,
+  "/api/v1/candidates",
+  passport.authenticate("jwt", { session: false }),
+  candidateRoutes,
+);
+
+app.use(
+  "/api/v1/jobs",
+  passport.authenticate("jwt", { session: false }),
+  jobRoutes,
+);
+
+app.use(
+  "/api/v1/applications",
+  passport.authenticate("jwt", { session: false }),
+  applicationRoutes,
 );
 
 app.use(errorHandlerMiddleware);

@@ -5,6 +5,8 @@ const router = express.Router();
 
 // /candidates/all
 router.get("/", candidateController.getAll);
+// /candidates/:id/matches
+router.get("/:id/matches", candidateController.getMatches);
 // /candidates/one/:id
 router.get("/:id", candidateController.getById);
 // /candidates/

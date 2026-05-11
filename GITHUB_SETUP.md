@@ -23,6 +23,7 @@ git status
 ```
 
 Confirm `.env` is **NOT** in the staged list. Your `.gitignore` already excludes:
+
 - `node_modules`
 - `.env`
 - `.vscode`
@@ -47,6 +48,11 @@ git commit -m "Initial commit: candidates-api"
 gh repo create candidates-api --private --source=. --remote=origin --push
 ```
 
+or
+
+````bash
+  git remote add origin "GITHUB REPO URL"
+
 Flags:
 - `--private` — only you can see it
 - `--source=.` — use current directory
@@ -61,7 +67,7 @@ The repo will be live at: `https://github.com/luigi-basantes/candidates-api`
 
   ```bash
   fly secrets set KEY=value
-  ```
+````
 
 - Double-check `.env` isn't tracked.
 
@@ -89,9 +95,9 @@ gh api -X PUT repos/luigi-basantes/candidates-api/branches/main/protection \
 
 ## Troubleshooting
 
-| Problem | Fix |
-|---------|-----|
-| `.env` got committed | `git rm --cached .env && git commit -m "Remove .env"` then rotate any leaked secrets |
-| `gh: command not found` | Install: `brew install gh` |
-| `gh auth status` shows logged out | Run `gh auth login` |
-| Repo name already exists | Pick a new name or delete the old one: `gh repo delete luigi-basantes/candidates-api` |
+| Problem                           | Fix                                                                                   |
+| --------------------------------- | ------------------------------------------------------------------------------------- |
+| `.env` got committed              | `git rm --cached .env && git commit -m "Remove .env"` then rotate any leaked secrets  |
+| `gh: command not found`           | Install: `brew install gh`                                                            |
+| `gh auth status` shows logged out | Run `gh auth login`                                                                   |
+| Repo name already exists          | Pick a new name or delete the old one: `gh repo delete luigi-basantes/candidates-api` |

@@ -7,8 +7,8 @@ services:
       - "4000:4000" # host:contenedor
     env_file:
       - .env
-    depends_on:
-      - mongo # espera a que mongo esté listo
+    # depends_on:
+    # - mongo # espera a que mongo esté listo
     networks:
       - app-network
     restart: unless-stopped
@@ -16,21 +16,21 @@ services:
       - .:/app # hot reload: cambios en código = cambios en contenedor
       - /app/node_modules # excluir node_modules del volumen
 
-  # ── MongoDB ─────────────────────────────────────────
-  mongo:
-    image: mongo:7 # imagen oficial de MongoDB
-    container_name: candidates-mongo
-    ports:
-      - "27017:27017" # opcional — solo si quieres conectar desde fuera
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=secret
-      - MONGO_INITDB_DATABASE=candidatesdb
-    volumes:
-      - mongo-data:/data/db # datos persisten aunque el contenedor se elimine
-    networks:
-      - app-network
-    restart: unless-stopped
+  # # ── MongoDB ─────────────────────────────────────────
+  # mongo:
+  #   image: mongo:7 # imagen oficial de MongoDB
+  #   container_name: candidates-mongo
+  #   ports:
+  #     - "27017:27017" # opcional — solo si quieres conectar desde fuera
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=admin
+  #     - MONGO_INITDB_ROOT_PASSWORD=secret
+  #     - MONGO_INITDB_DATABASE=candidatesdb
+  #   volumes:
+  #     - mongo-data:/data/db # datos persisten aunque el contenedor se elimine
+  #   networks:
+  #     - app-network
+  #   restart: unless-stopped
 
 networks:
   app-network: # red interna — los servicios se ven por nombre
